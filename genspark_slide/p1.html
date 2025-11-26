@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>I章｜水素エネルギーの特性と可能性 概説</title>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" rel="stylesheet"/>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Noto Sans JP', sans-serif;
+        background-color: #f0f9ff;
+        color: #1e293b;
+    }
+    .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background-color: #ffffff;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Header */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        padding: 30px 60px 20px 60px;
+        border-bottom: 2px solid #e2e8f0;
+        background: white;
+        z-index: 10;
+        flex-shrink: 0;
+    }
+
+    .page-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0f172a;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .page-title::before {
+        content: '';
+        display: block;
+        width: 8px;
+        height: 28px;
+        background-color: #0284c7;
+        border-radius: 2px;
+    }
+
+    .chapter-label {
+        font-size: 14px;
+        font-weight: 600;
+        color: #64748b;
+        background-color: #f1f5f9;
+        padding: 6px 16px;
+        border-radius: 20px;
+        letter-spacing: 0.05em;
+    }
+
+    /* Content Layout */
+    .content-wrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        padding: 30px 60px;
+        gap: 30px;
+    }
+
+    /* Text Section */
+    .text-section {
+        background-color: #ffffff;
+        font-size: 18px;
+        line-height: 1.8;
+        color: #334155;
+        text-align: justify;
+    }
+
+    .text-section p {
+        margin-bottom: 0;
+    }
+
+    /* Flow Diagram Section */
+    .flow-container {
+        flex: 1;
+        background-color: #f8fafc;
+        border-radius: 16px;
+        border: 1px solid #e2e8f0;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .flow-title {
+        position: absolute;
+        top: 20px;
+        left: 30px;
+        font-size: 16px;
+        font-weight: 700;
+        color: #64748b;
+        background-color: #fff;
+        padding: 4px 12px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .process-steps {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        position: relative;
+        margin-top: 20px;
+        z-index: 2;
+    }
+
+    /* Connecting Line */
+    .line-bg {
+        position: absolute;
+        top: 50px;
+        left: 60px;
+        right: 60px;
+        height: 3px;
+        background-color: #cbd5e1;
+        z-index: 0;
+    }
+
+    .step-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 180px;
+        position: relative;
+        z-index: 2;
+    }
+
+    .step-icon-circle {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: white;
+        border: 3px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 40px;
+        color: #64748b;
+        margin-bottom: 15px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+
+    .step-item:hover .step-icon-circle {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        border-color: #0ea5e9;
+        color: #0ea5e9;
+    }
+
+    .step-content {
+        text-align: center;
+    }
+
+    .step-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #1e293b;
+        margin-bottom: 8px;
+    }
+
+    .step-desc {
+        font-size: 13px;
+        color: #64748b;
+        line-height: 1.4;
+    }
+
+    /* Arrows between steps */
+    .arrow-icon {
+        position: absolute;
+        top: 38px;
+        right: -60px;
+        font-size: 24px;
+        color: #94a3b8;
+        z-index: 1;
+    }
+
+    /* Specific Colors */
+    .icon-solar { color: #f59e0b; border-color: #fef3c7; background-color: #fffbeb; }
+    .icon-electrolysis { color: #0ea5e9; border-color: #e0f2fe; background-color: #f0f9ff; }
+    .icon-storage { color: #64748b; border-color: #f1f5f9; background-color: #f8fafc; }
+    .icon-fc { color: #8b5cf6; border-color: #f3e8ff; background-color: #faf5ff; }
+    .icon-usage { color: #22c55e; border-color: #dcfce7; background-color: #f0fdf4; }
+
+    .citation {
+        font-size: 0.7em;
+        vertical-align: super;
+        color: #0ea5e9;
+        font-weight: bold;
+        margin-left: 2px;
+    }
+
+    /* Footer */
+    .footer {
+        height: 36px;
+        padding: 0 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: #94a3b8;
+        border-top: 1px solid #e2e8f0;
+        background: #f8fafc;
+        flex-shrink: 0;
+    }
+
+</style>
+</head>
+<body>
+<div class="slide-container">
+<!-- Header -->
+<div class="header">
+<h1 class="page-title">
+<p>水素エネルギーの特性と可能性 概説</p>
+</h1>
+<div class="chapter-label">
+<p>I章</p>
+</div>
+</div>
+<!-- Main Content -->
+<div class="content-wrapper">
+<!-- Text Section -->
+<div class="text-section">
+<p>
+                水素は利用時に二酸化炭素(CO₂)を排出しないクリーンエネルギーであり、燃料電池を通じて電気や熱を取り出せます<span class="citation">[1]</span>。製造段階でも再生可能エネルギー由来の電力で水を電気分解すれば、製造から利用まで脱炭素化が可能です<span class="citation">[1]</span>。例えば水(H₂O)に電気を流して水素(H₂)を生成する技術が実用化されつつあり、まさに「太陽光と水があれば水素が生まれる」時代が来ています<span class="citation">[2]</span>。実際、福島県浪江町の「福島水素エネルギー研究フィールド(FH2R)」では、太陽光発電(10MW)を用いて大規模な水電解(最大20MW)により年間900トン規模のグリーン水素製造が行われています<span class="citation">[1]</span>。
+            </p>
+</div>
+<!-- Flow Diagram Section -->
+<div class="flow-container">
+<div class="flow-title">
+<p>グリーン水素 サプライチェーンフロー</p>
+</div>
+<!-- Background Line -->
+<div class="line-bg"></div>
+<div class="process-steps">
+<!-- Step 1: Solar -->
+<div class="step-item">
+<div class="step-icon-circle icon-solar">
+<i class="fas fa-solar-panel"></i>
+</div>
+<div class="step-content">
+<p class="step-title">再エネ発電</p>
+<p class="step-desc">太陽光・風力等の<br/>自然エネルギー</p>
+</div>
+<!-- Right Arrow -->
+<i class="fas fa-chevron-right arrow-icon"></i>
+</div>
+<!-- Step 2: Electrolysis -->
+<div class="step-item">
+<div class="step-icon-circle icon-electrolysis">
+<i class="fas fa-water"></i>
+</div>
+<div class="step-content">
+<p class="step-title">水電解装置</p>
+<p class="step-desc">水を電気分解して<br/>水素(H₂)を製造</p>
+</div>
+<i class="fas fa-chevron-right arrow-icon"></i>
+</div>
+<!-- Step 3: Storage -->
+<div class="step-item">
+<div class="step-icon-circle icon-storage">
+<i class="fas fa-database"></i>
+</div>
+<div class="step-content">
+<p class="step-title">水素貯蔵・輸送</p>
+<p class="step-desc">圧縮・液化・吸蔵合金<br/>等で貯めて運ぶ</p>
+</div>
+<i class="fas fa-chevron-right arrow-icon"></i>
+</div>
+<!-- Step 4: Fuel Cell -->
+<div class="step-item">
+<div class="step-icon-circle icon-fc">
+<i class="fas fa-car-battery"></i>
+</div>
+<div class="step-content">
+<p class="step-title">燃料電池 (FC)</p>
+<p class="step-desc">水素と酸素を反応させ<br/>電気を取り出す</p>
+</div>
+<i class="fas fa-chevron-right arrow-icon"></i>
+</div>
+<!-- Step 5: Usage -->
+<div class="step-item">
+<div class="step-icon-circle icon-usage">
+<i class="fas fa-city"></i>
+</div>
+<div class="step-content">
+<p class="step-title">電力・熱利用</p>
+<p class="step-desc">CO₂ゼロの電気・熱を<br/>社会で活用</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<div class="footer">
+<p>水素エネルギーの現状と東北地域での取り組み – リサーチ報告書</p>
+<p>7</p>
+</div>
+</div>
+</body>
+</html>
